@@ -1,0 +1,90 @@
+scenario:
+  name: "Weekend Rush"
+  venue: mall
+  venue_type: MALL
+  simulation_date: "2024-03-16"  # Saturday
+  duration_hours: 24
+  dt: 0.05
+  seed: 101
+
+agent_profiles:
+  - type: shopper
+    fraction: 0.85
+    desired_speed_mean: 1.1
+    desired_speed_std: 0.2
+    radius_mean: 0.20
+    radius_std: 0.02
+    time_gap: 1.0
+    dwell_time_mean_min: 45
+    dwell_time_std_min: 15
+  - type: staff
+    fraction: 0.10
+    desired_speed_mean: 1.5
+    desired_speed_std: 0.1
+    radius_mean: 0.18
+    radius_std: 0.01
+    time_gap: 0.8
+    dwell_time_mean_min: 480
+    dwell_time_std_min: 30
+  - type: visitor
+    fraction: 0.05
+    desired_speed_mean: 0.85
+    desired_speed_std: 0.15
+    radius_mean: 0.22
+    radius_std: 0.02
+    time_gap: 1.2
+    dwell_time_mean_min: 90
+    dwell_time_std_min: 25
+
+peak_footfall: 1400
+zone_attractors:
+  Lobby: 1.0
+  RetailArea: 0.85
+  FoodCourt: 0.75
+  WaitingArea: 0.35
+  ServicePoint: 0.25
+  QueueArea: 0.20
+  EntryExitPoint: 1.0
+  PedestrianPathway: 0.90
+
+time_of_day_multipliers:
+  0: 0.01
+  1: 0.01
+  2: 0.01
+  3: 0.01
+  4: 0.01
+  5: 0.02
+  6: 0.05
+  7: 0.15
+  8: 0.30
+  9: 0.55
+  10: 0.80
+  11: 0.95
+  12: 1.00
+  13: 0.98
+  14: 0.95
+  15: 0.92
+  16: 0.90
+  17: 0.95
+  18: 1.00
+  19: 0.90
+  20: 0.70
+  21: 0.40
+  22: 0.15
+  23: 0.03
+
+event:
+  type: none
+  scale: none
+  start_hour: null
+  end_hour: null
+  zone: null
+  crowd_multiplier: 1.0
+
+exits:
+  open_count: 4
+  blocked: []
+
+external:
+  weather: sunny
+  temperature_c: 30.0

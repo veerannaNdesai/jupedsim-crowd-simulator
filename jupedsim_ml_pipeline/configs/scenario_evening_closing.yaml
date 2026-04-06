@@ -1,0 +1,90 @@
+scenario:
+  name: "Evening Closing"
+  venue: mall
+  venue_type: MALL
+  simulation_date: "2024-03-13"  # Wednesday
+  duration_hours: 24
+  dt: 0.05
+  seed: 404
+
+agent_profiles:
+  - type: shopper
+    fraction: 0.78
+    desired_speed_mean: 1.3
+    desired_speed_std: 0.2
+    radius_mean: 0.20
+    radius_std: 0.02
+    time_gap: 1.0
+    dwell_time_mean_min: 25
+    dwell_time_std_min: 10
+  - type: staff
+    fraction: 0.17
+    desired_speed_mean: 1.5
+    desired_speed_std: 0.1
+    radius_mean: 0.18
+    radius_std: 0.01
+    time_gap: 0.8
+    dwell_time_mean_min: 480
+    dwell_time_std_min: 30
+  - type: visitor
+    fraction: 0.05
+    desired_speed_mean: 0.95
+    desired_speed_std: 0.15
+    radius_mean: 0.22
+    radius_std: 0.02
+    time_gap: 1.2
+    dwell_time_mean_min: 40
+    dwell_time_std_min: 15
+
+peak_footfall: 600
+zone_attractors:
+  Lobby: 1.0
+  RetailArea: 0.45
+  FoodCourt: 0.65
+  WaitingArea: 0.20
+  ServicePoint: 0.10
+  QueueArea: 0.08
+  EntryExitPoint: 1.0
+  PedestrianPathway: 0.75
+
+time_of_day_multipliers:
+  0: 0.01
+  1: 0.01
+  2: 0.01
+  3: 0.01
+  4: 0.01
+  5: 0.02
+  6: 0.04
+  7: 0.08
+  8: 0.15
+  9: 0.30
+  10: 0.55
+  11: 0.70
+  12: 0.80
+  13: 0.75
+  14: 0.70
+  15: 0.65
+  16: 0.60
+  17: 0.70
+  18: 0.85
+  19: 1.00
+  20: 0.90
+  21: 0.60
+  22: 0.20
+  23: 0.05
+
+event:
+  type: none
+  scale: none
+  start_hour: null
+  end_hour: null
+  zone: null
+  crowd_multiplier: 1.0
+
+exits:
+  open_count: 3
+  blocked: ["Exit_South"]
+
+external:
+  weather: rainy
+  temperature_c: 22.0

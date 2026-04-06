@@ -1,0 +1,90 @@
+scenario:
+  name: "Emergency Drill"
+  venue: mall
+  venue_type: MALL
+  simulation_date: "2024-03-12"  # Tuesday
+  duration_hours: 24
+  dt: 0.05
+  seed: 303
+
+agent_profiles:
+  - type: shopper
+    fraction: 0.80
+    desired_speed_mean: 1.6
+    desired_speed_std: 0.3
+    radius_mean: 0.20
+    radius_std: 0.02
+    time_gap: 0.6
+    dwell_time_mean_min: 10
+    dwell_time_std_min: 5
+  - type: staff
+    fraction: 0.15
+    desired_speed_mean: 1.8
+    desired_speed_std: 0.15
+    radius_mean: 0.18
+    radius_std: 0.01
+    time_gap: 0.5
+    dwell_time_mean_min: 480
+    dwell_time_std_min: 30
+  - type: visitor
+    fraction: 0.05
+    desired_speed_mean: 1.4
+    desired_speed_std: 0.2
+    radius_mean: 0.22
+    radius_std: 0.02
+    time_gap: 0.7
+    dwell_time_mean_min: 10
+    dwell_time_std_min: 5
+
+peak_footfall: 900
+zone_attractors:
+  Lobby: 1.0
+  RetailArea: 0.60
+  FoodCourt: 0.40
+  WaitingArea: 0.10
+  ServicePoint: 0.10
+  QueueArea: 0.05
+  EntryExitPoint: 1.0
+  PedestrianPathway: 1.0
+
+time_of_day_multipliers:
+  0: 0.01
+  1: 0.01
+  2: 0.01
+  3: 0.01
+  4: 0.01
+  5: 0.02
+  6: 0.05
+  7: 0.10
+  8: 0.25
+  9: 0.45
+  10: 0.75
+  11: 0.90
+  12: 1.00
+  13: 0.30
+  14: 0.20
+  15: 0.70
+  16: 0.75
+  17: 0.80
+  18: 0.85
+  19: 0.70
+  20: 0.50
+  21: 0.25
+  22: 0.08
+  23: 0.02
+
+event:
+  type: emergency_drill
+  scale: medium
+  start_hour: 13
+  end_hour: 14
+  zone: Lobby
+  crowd_multiplier: 1.0
+
+exits:
+  open_count: 2
+  blocked: ["Exit_North", "Exit_East"]
+
+external:
+  weather: sunny
+  temperature_c: 27.0

@@ -1,0 +1,96 @@
+scenario:
+  name: "Superstar Movie Show - Special Event Day"
+  venue: mall
+  venue_type: MALL
+  simulation_date: "2024-03-11"
+  duration_hours: 24
+  dt: 0.05
+  seed: 42
+
+agent_profiles:
+  - type: shopper
+    fraction: 0.50
+    desired_speed_mean: 1.2
+    desired_speed_std: 0.2
+    radius_mean: 0.20
+    radius_std: 0.02
+    time_gap: 1.0
+    dwell_time_mean_min: 30
+    dwell_time_std_min: 10
+  - type: staff
+    fraction: 0.08
+    desired_speed_mean: 1.5
+    desired_speed_std: 0.1
+    radius_mean: 0.18
+    radius_std: 0.01
+    time_gap: 0.8
+    dwell_time_mean_min: 480
+    dwell_time_std_min: 30
+  - type: visitor
+    fraction: 0.42
+    desired_speed_mean: 0.80
+    desired_speed_std: 0.20
+    radius_mean: 0.22
+    radius_std: 0.02
+    time_gap: 1.5
+    dwell_time_mean_min: 210
+    dwell_time_std_min: 45
+
+peak_footfall: 2200
+zone_attractors:
+  Lobby: 0.85
+  RetailArea: 0.55
+  FoodCourt: 0.80
+  WaitingArea: 0.45
+  ServicePoint: 0.30
+  QueueArea: 0.85
+  EntryExitPoint: 1.0
+  PedestrianPathway: 0.70
+  EventArea: 1.0
+
+time_of_day_multipliers:
+  0: 0.01
+  1: 0.01
+  2: 0.01
+  3: 0.01
+  4: 0.01
+  5: 0.02
+  6: 0.06
+  7: 0.15
+  8: 0.30   # early shoppers + event-day buzz begins
+  9: 0.50   # crowd building steadily
+  10: 0.75  # pre-show arrival wave, QueueArea starts filling
+  11: 0.90  # heavy pre-show crowd across Lobby + QueueArea
+  12: 1.00  # absolute peak — show in 1 hr, max queuing + footfall
+  13: 0.70  # audience moves into EventArea, general mall quiets
+  14: 0.55  # mid-show lull — lowest general circulation
+  15: 0.60  # intermission movement, FoodCourt refreshments
+  16: 0.85  # first screening ends ~16:00, partial exit surge
+  17: 1.00  # post-show FoodCourt + Retail surge, second show arrivals
+  18: 0.95  # dinner crowd overlaps with second show queue
+  19: 0.75  # second show starts ~19:00, audience seated
+  20: 0.65  # mid-second-show quiet in general areas
+  21: 0.90  # second show ends ~21:00 — full exit surge
+  22: 0.50  # crowd dispersal, stragglers
+  23: 0.08  # closing, near-empty
+
+event:
+  type: movie_show
+  scale: large
+  start_hour: 13
+  end_hour: 23       # extended to 23 to capture post-show dispersal context
+  zone: EventArea
+  crowd_multiplier: 2.5
+
+exits:
+  open_count: 4
+  blocked: []
+
+congestion:
+  density_change_rate_clip: 50.0    # guards against division-by-zero at hour 0
+  flow_imbalance_enabled: true       # must compute flow_in - flow_out separately
+  overcapacity_spillback: true       # triggers neighbor rerouting above 1.0 ratio
+
+external:
+  weather: sunny
+  temperature_c: 28.0
